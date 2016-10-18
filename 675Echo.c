@@ -1,9 +1,10 @@
+#pragma config(Sensor, in1,    liftPot,        sensorPotentiometer)
 #pragma config(Motor,  port1,           leftTopLift,   tmotorVex393_HBridge, openLoop, reversed)
 #pragma config(Motor,  port2,           leftFront,     tmotorVex393TurboSpeed_MC29, openLoop, driveLeft)
 #pragma config(Motor,  port3,           leftBack,      tmotorVex393TurboSpeed_MC29, openLoop, driveLeft)
 #pragma config(Motor,  port4,           rightFront,    tmotorVex393TurboSpeed_MC29, openLoop, reversed, driveRight)
 #pragma config(Motor,  port5,           rightBack,     tmotorVex393TurboSpeed_MC29, openLoop, reversed, driveRight)
-#pragma config(Motor,  port6,           leftBotLift,   tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port6,           leftBotLift,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           leftMidLift,   tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port8,           rightBotLift,  tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           rightMidLift,  tmotorVex393_MC29, openLoop)
@@ -15,7 +16,7 @@
 #include "Vex_Competition_Includes.c"
 
 #include "drive.h"
-#include "lift.h"
+#include "liftPot.h"
 
 void pre_auton()
 {
@@ -43,7 +44,7 @@ task usercontrol()
 	{
 		if(getTaskState(driveTask) == taskStateStopped)
 			startTask(driveTask);
-	if (getTaskState(moveLift) == taskStateStopped)
-		startTask(moveLift);
+	if (getTaskState(moveLiftPot) == taskStateStopped)
+		startTask(moveLiftPot);
 	}
 }
