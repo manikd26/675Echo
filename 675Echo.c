@@ -44,7 +44,7 @@ task usercontrol()
 	{
 		if(getTaskState(driveTask) == taskStateStopped)
 			startTask(driveTask);
-	if (getTaskState(moveLiftPot) == taskStateStopped)
-		startTask(moveLiftPot);
+		if (getTaskState(moveLiftPot) == taskStateStopped)
+			startTask(moveLiftPot);
 	}
 }
