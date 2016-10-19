@@ -1,12 +1,12 @@
 #define liftBtn vexRT(Btn6U)
 
 //Target Values
-int potValues[2] = {0, 150};
+int potValues[2] = {355, 200};
 int potIndex = 0;
 float liftPower = 0.0;
 
 //TBH Constants
-float Kg = 0.1;
+float Kg = 0.01;
 
 //TBH Calculation Variables
 float drive;
@@ -18,6 +18,19 @@ float currentPot;
 float error;
 float lastError;
 
+void sendLiftPower(float power)
+{
+	int pow = round(power);
+	if (pow < 0)
+		pow *=-1;
+	motor[rightBotLift] = pow;
+	motor[rightMidLift] = pow;
+	motor[rightTopLift] = pow;
+	motor[leftBotLift] = pow;
+	motor[leftMidLift] = pow;
+	motor[leftTopLift] = pow;
+
+}
 
 void TBHLift(float target)
 {
@@ -52,18 +65,21 @@ void TBHLift(float target)
 
 	liftPower = (drive * 127) + 0.5;
 
+
 	// Save last error
 	lastError = error;
 
 
-	wait1Msec(25);
+	wait1Msec(40); //wait 40 milliseconds for a potential target change, adjust as needed
 }
-
-
 
 task moveLiftPot()
 {
 	while(true){
-		TBHLift(potValues[1]);
+		if (liftBtn) {
+			potIndex = (potIndex == 0) ? 1: 0; //allows you to toggle the potIndex
+		}
+		TBHLift(potValues[potIndex]);
+			sendLiftPower(liftPower);
 	}
 }

@@ -16,7 +16,9 @@
 #include "Vex_Competition_Includes.c"
 
 #include "drive.h"
-#include "liftPot.h"
+//#include "liftPot.h"
+//#include "manualLift.h"
+#include "fuckthislift.h"
 
 void pre_auton()
 {
@@ -44,7 +46,11 @@ task usercontrol()
 	{
 		if(getTaskState(driveTask) == taskStateStopped)
 			startTask(driveTask);
-		if (getTaskState(moveLiftPot) == taskStateStopped)
-			startTask(moveLiftPot);
+		//		if (getTaskState(moveLiftPot) == taskStateStopped)
+		//			startTask(moveLiftPot);
+//		if (getTaskState(manualLift) == taskStateStopped)
+//			startTask(manualLift);
+			if (getTaskState(fuckthislift) == taskStateStopped)
+			startTask(fuckthislift);
 	}
 }
