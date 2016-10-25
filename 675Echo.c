@@ -46,11 +46,11 @@ task usercontrol()
 	{
 		if(getTaskState(driveTask) == taskStateStopped)
 			startTask(driveTask);
-		//		if (getTaskState(moveLiftPot) == taskStateStopped)
-		//			startTask(moveLiftPot);
-//		if (getTaskState(manualLift) == taskStateStopped)
-//			startTask(manualLift);
-			if (getTaskState(fuckthislift) == taskStateStopped)
-			startTask(fuckthislift);
+		if (getTaskState(moveLiftPot) == taskStateStopped)
+		startTask(moveLiftPot);
+		//	if (getTaskState(manualLift) == taskStateStopped)
+		//	startTask(manualLift);
+				//if (getTaskState(fuckthislift) == taskStateStopped)
+			//	startTask(fuckthislift);
 	}
 }

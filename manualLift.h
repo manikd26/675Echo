@@ -5,22 +5,22 @@ task manualLift()
 	{
 		if(vexRT(Btn6U))
 		{
-			motor[rightBotLift] = 127;
-			motor[rightMidLift] = 127;
-			motor[rightTopLift] = 127;
-			motor[leftBotLift] = 127;
-			motor[leftMidLift] = 127;
-			motor[leftTopLift] = 127;
+			motor[rightBotLift] = 100;
+			motor[rightMidLift] = 100;
+			motor[rightTopLift] = 100;
+			motor[leftBotLift] = 100;
+			motor[leftMidLift] = 100;
+			motor[leftTopLift] = 100;
 		}
 
 		else if(vexRT(Btn6D))
 		{
-			motor[rightBotLift] = -127;
-			motor[rightMidLift] = -127;
-			motor[rightTopLift] = -127;
-			motor[leftBotLift] = -127;
-			motor[leftMidLift] = -127;
-			motor[leftTopLift] = -127;
+			motor[rightBotLift] = -100;
+			motor[rightMidLift] = -100;
+			motor[rightTopLift] = -100;
+			motor[leftBotLift] = -100;
+			motor[leftMidLift] = -100;
+			motor[leftTopLift] = -100;
 		}
 
 		else
