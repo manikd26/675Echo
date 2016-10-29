@@ -1,9 +1,8 @@
-
 task manualLift()
 {
 	while(true)
 	{
-		if(vexRT(Btn6U))
+		if(vexRT(Btn6D))
 		{
 			motor[rightBotLift] = 100;
 			motor[rightMidLift] = 100;
@@ -13,7 +12,7 @@ task manualLift()
 			motor[leftTopLift] = 100;
 		}
 
-		else if(vexRT(Btn6D))
+		else if(vexRT(Btn6U))
 		{
 			motor[rightBotLift] = -100;
 			motor[rightMidLift] = -100;

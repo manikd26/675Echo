@@ -3,11 +3,9 @@ int driveThreshold = 20;
 task driveTask()
 {
 	if(abs(vexRT(Ch3)) > driveThreshold)	{
-		motor[leftFront] = vexRT(Ch3);
-		motor[leftBack] = vexRT(Ch3);
+		motor[leftDrive] = vexRT(Ch3);
 		} else {
-		motor[leftFront] = 0;
-		motor[leftBack] = 0;
+		motor[leftDrive] = 0;
 	}
 
 	if(abs(vexRT(Ch2)) > driveThreshold)
@@ -20,4 +18,20 @@ task driveTask()
 		motor[rightFront] = 0;
 		motor[rightBack] = 0;
 	}
+}
+
+task hangTask()
+{
+		if(vexRT(Btn8U))
+		{
+			motor[hangMotors] = 127;
+		}
+		else if(vexRT(Btn8D))
+		{
+			motor[hangMotors] = -127;
+		}
+		else
+		{
+			motor[hangMotors] = 0;
+		}
 }
