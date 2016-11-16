@@ -24,11 +24,11 @@ task hangTask()
 {
 		if(vexRT(Btn8U))
 		{
-			motor[hangMotors] = 127;
+			motor[hangMotors] = -127;
 		}
 		else if(vexRT(Btn8D))
 		{
-			motor[hangMotors] = -127;
+			motor[hangMotors] = +127;
 		}
 		else
 		{

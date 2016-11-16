@@ -18,6 +18,7 @@
 #include "drive.h"
 //#include "liftPot.h"
 #include "manualLift.h"
+#include "auton.h"
 //#include "fuckthislift.h"
 
 void pre_auton()
@@ -33,8 +34,8 @@ void pre_auton()
 
 task autonomous()
 {
-	// Remove this function call once you have "real" code.
-	AutonomousCodePlaceholderForTesting();
+	if(getTaskState(auton) == taskStateStopped)
+	startTask(auton);
 }
 
 
