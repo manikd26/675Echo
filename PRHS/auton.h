@@ -52,7 +52,7 @@ void forwardgyro(int speed, int distance, int heading)
 	nMotorEncoder[rightFront] = 0;
 	wait1Msec(100);
 
-	while((abs(nMotorEncoder[leftFront]) < distance) || (abs(nMotorEncoder[rightFront]) < distance)
+	while((abs(nMotorEncoder[leftFront]) < distance) || (abs(nMotorEncoder[rightFront]) < distance))
 	{
 		motor[leftBack] = speed;
 		motor[leftFront] = speed;

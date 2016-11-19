@@ -1,8 +1,10 @@
 #pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(UART_Usage, UART2, uartNotUsed, baudRate4800, IOPins, None, None)
 #pragma config(I2C_Usage, I2C1, i2cSensors)
-#pragma config(Sensor, in1,    Gyro,           sensorNone)
+#pragma config(Sensor, in1,    Gyro,           sensorGyro)
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
+#pragma config(Sensor, dgtl1,  pistonClaw,     sensorDigitalOut)
+#pragma config(Sensor, dgtl2,  pistonLaunch,   sensorDigitalOut)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           rightBotLift,  tmotorVex393_HBridge, openLoop, reversed)
@@ -282,5 +284,7 @@ task usercontrol()
 			startTask(driveTask);
 		if(getTaskState(manualLift) == taskStateStopped)
 			startTask(manualLift);
+		if(getTaskState(pneumatics) == taskStateStopped)
+			startTask(pneumatics);
 	}
 }

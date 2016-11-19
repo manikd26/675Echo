@@ -1,4 +1,6 @@
 int driveThreshold = 20;
+bool actuateClaw = false;
+bool actuateLaunch = false;
 
 
 task driveTask()
@@ -23,5 +25,26 @@ task driveTask()
 	{
 		motor[rightFront] = 0;
 		motor[rightBack] = 0;
+	}
+}
+
+task pneumatics()
+{
+	while(true)
+	{
+		if(vexRT[Btn8D] != actuateClaw)
+		{
+			actuateClaw = !actuateClaw;
+			if(actuateClaw)
+				SensorValue[pistonClaw] = !SensorValue[pistonClaw];
+		}
+
+		if(vexRT[Btn8R] != actuateLaunch)
+		{
+			actuateLaunch = !actuateLaunch;
+			if(actuateLaunch)
+				SensorValue[pistonLaunch] = !SensorValue[pistonLaunch];
+		}
+
 	}
 }
