@@ -130,9 +130,9 @@ void rightturn(int speed, int heading)
 
 	//Brief brake to stop some drift
 	motor[rightBack] = 5;
-		motor[rightBack] = speed;
-		motor[rightFront] = speed;
-		motor[leftBack] = speed;
+	motor[rightBack] = speed;
+	motor[rightFront] = speed;
+	motor[leftBack] = speed;
 	motor[rightFront] = 5;
 	motor[leftBack] = -5;
 	motor[leftFront] = -5;
@@ -168,18 +168,14 @@ void liftUp(int targetPot)
 {
 	while (SensorValue[liftPot] < targetPot)
 	{
-		motor[leftBotLift] = 127;
 		motor[leftMidLift] = 127;
 		motor[leftTopLift] = 127;
-		motor[rightBotLift] = 127;
 		motor[rightMidLift] = 127;
 		motor[rightTopLift] = 127;
 	}
 
-	motor[leftBotLift] = 0;
 	motor[leftMidLift] = 0;
 	motor[leftTopLift] = 0;
-	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
 	wait1Msec (250);
@@ -191,18 +187,14 @@ void liftDown(int targetPot)
 {
 	while (SensorValue[liftPot] > targetPot)
 	{
-		motor[leftBotLift] = -127;
 		motor[leftMidLift] = -127;
 		motor[leftTopLift] = -127;
-		motor[rightBotLift] = -127;
 		motor[rightMidLift] = -127;
 		motor[rightTopLift] = -127;
 	}
 
-	motor[leftBotLift] = 0;
 	motor[leftMidLift] = 0;
 	motor[leftTopLift] = 0;
-	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
 	wait1Msec (250);
@@ -216,10 +208,8 @@ void wait(int time)
 	motor[leftBack] = 0;
 	motor[rightFront] = 0;
 	motor[leftFront] = 0;
-//	motor[leftBotLift] = 0;
 	motor[leftMidLift] = 0;
 	motor[leftTopLift] = 0;
-//	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
 	wait1Msec(time);

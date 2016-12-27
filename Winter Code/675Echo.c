@@ -7,7 +7,7 @@
 #pragma config(Sensor, dgtl2,  pistonClaw,     sensorDigitalOut)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
-#pragma config(Motor,  port1,           rightClaw,     tmotorVex393_HBridge, openLoop, reversed)
+#pragma config(Motor,  port1,           rightClaw,     tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,           rightMidLift,  tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port3,           rightTopLift,  tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           leftMidLift,   tmotorVex393_MC29, openLoop)
@@ -301,5 +301,7 @@ task usercontrol()
 			startTask(manualLift);
 		if(getTaskState(pneumatics) == taskStateStopped)
 			startTask(pneumatics);
+		if (getTaskState(claw) == taskStateStopped)
+			startTask(claw);
 	}
 }
