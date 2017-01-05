@@ -1,21 +1,23 @@
+float baseClaw;
+
 task manualLift()
 {
 	while(true)
 	{
 		if(vexRT(Btn6U))
 		{
-			motor[rightMidLift] = 100;
-			motor[rightTopLift] = 100;
-			motor[leftMidLift] = 100;
-			motor[leftTopLift] = 100;
+			motor[rightMidLift] = 127;
+			motor[rightTopLift] = 127;
+			motor[leftMidLift] = 127;
+			motor[leftTopLift] = 127;
 		}
 
-		else if(vexRT(Btn6D)
+		else if(vexRT(Btn6D))
 		{
-			motor[rightMidLift] = -100;
-			motor[rightTopLift] = -100;
-			motor[leftMidLift] = -100;
-			motor[leftTopLift] = -100;
+			motor[rightMidLift] = -127;
+			motor[rightTopLift] = -127;
+			motor[leftMidLift] = -127;
+			motor[leftTopLift] = -127;
 		}
 
 		else
@@ -32,12 +34,12 @@ task claw()
 {
 	while (true)
 	{
-		if (vexRT(Btn5U)
+		if (vexRT(Btn5U))
 		{
 			motor[rightClaw] = 127;
 			motor[leftClaw] = 127;
 		}
-		else if (vexRT(Btn5D)
+		else if (vexRT(Btn5D))
 		{
 			motor[rightClaw] = -127;
 			motor[leftClaw] = -127;
@@ -47,6 +49,21 @@ task claw()
 			motor[rightClaw] = 0;
 			motor[leftClaw]= 0;
 		}
-
 	}
+}
+
+task adjustClaw()
+{
+	SensorValue[rightClawPot] = baseClaw;
+
+	while(SensorValue[leftClawPot] < baseClaw)
+		motor[leftClaw] = 127;
+
+	while(SensorValue[leftClawPot] > baseClaw)
+		motor[leftClaw] = -127;
+
+	while(SensorValue[leftClawPot] == baseClaw)
+		motor[leftClaw] = 0;
+
+	wait1Msec(40);
 }

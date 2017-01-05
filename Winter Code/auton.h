@@ -1,22 +1,18 @@
 void forward(int speed, int distance)
 {
-	nMotorEncoder[leftFront] = 0;
-	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
 	wait1Msec(100);
 
-	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
+	while((abs(nMotorEncoder[rightDrive]) < distance) || (abs(nMotorEncoder[leftDrive]) < distance))
 	{
-		motor[rightBack] = speed;
-		motor[rightFront] = speed;
-		motor[leftBack] = speed;
-		motor[leftFront] = speed;
+		motor[rightDrive] = speed;
+		motor[leftDrive] = speed;
 	}
 
 	//Brief brake to stop some drift
-	motor[rightBack] = 5;
-	motor[rightFront] = 5;
-	motor[leftBack] = 5;
-	motor[leftFront] = 5;
+	motor[rightDrive] = 5;
+	motor[leftDrive] = 5;
 	wait1Msec(250);
 }
 
@@ -24,23 +20,19 @@ void forward(int speed, int distance)
 
 void backward(int speed, int distance)
 {
-	nMotorEncoder[leftFront] = 0;
-	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
 	wait1Msec(100);
 
-	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
+	while((abs(nMotorEncoder[rightDrive]) < distance) || (abs(nMotorEncoder[leftDrive]) < distance))
 	{
-		motor[rightBack] = -speed;
-		motor[rightFront] = -speed;
-		motor[leftBack] = -speed;
-		motor[leftFront] = -speed;
+		motor[rightDrive] = -speed;
+		motor[leftDrive] = -speed;
 	}
 
 	//Brief brake to stop some drift
-	motor[rightBack] = 5;
-	motor[rightFront] = 5;
-	motor[leftBack] = 5;
-	motor[leftFront] = 5;
+	motor[rightDrive] = 5;
+	motor[leftDrive] = 5;
 	wait1Msec(250);
 }
 
@@ -48,31 +40,25 @@ void backward(int speed, int distance)
 
 void forwardgyro(int speed, int distance, int heading)
 {
-	nMotorEncoder[leftFront] = 0;
-	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
 	wait1Msec(100);
 
-	while((abs(nMotorEncoder[leftFront]) < distance) || (abs(nMotorEncoder[rightFront]) < distance))
+	while((abs(nMotorEncoder[leftDrive]) < distance) || (abs(nMotorEncoder[rightDrive]) < distance))
 	{
-		motor[leftBack] = speed;
-		motor[leftFront] = speed;
-		motor[rightBack] = speed;
-		motor[rightFront] = speed;
+		motor[leftDrive] = speed;
+		motor[rightDrive] = speed;
 
 		if (abs(SensorValue[Gyro]) > (heading*10)+5)
 		{
-			motor[rightBack] = speed;
-			motor[rightFront] = speed;
-			motor[leftBack] = speed*0.8;
-			motor[leftFront] = speed*0.8;
+			motor[rightDrive] = speed;
+			motor[leftDrive] = speed*0.8;
 		}
 	}
 
 	//Brief brake to stop some drift
-	motor[rightBack] = 05;
-	motor[rightFront] = -5;
-	motor[leftBack] = -5;
-	motor[leftFront] = -5;
+	motor[rightDrive] = -5;
+	motor[leftDrive] = -5;
 	wait1Msec(250);
 }
 
@@ -80,38 +66,30 @@ void forwardgyro(int speed, int distance, int heading)
 
 void backwardgyro(int speed, int distance, int heading)
 {
-	nMotorEncoder[leftFront] = 0;
-	nMotorEncoder[rightFront] = 0;
+	nMotorEncoder[leftDrive] = 0;
+	nMotorEncoder[rightDrive] = 0;
 	wait1Msec(100);
 
-	while((abs(nMotorEncoder[leftFront]) < distance) || (abs(nMotorEncoder[rightFront]) < distance))
+	while((abs(nMotorEncoder[leftDrive]) < distance) || (abs(nMotorEncoder[rightDrive]) < distance))
 	{
-		motor[rightBack] = -speed;
-		motor[rightFront] = -speed;
-		motor[leftBack] = -speed;
-		motor[leftFront] = -speed;
+		motor[rightDrive] = -speed;
+		motor[leftDrive] = -speed;
 
 		if(abs(SensorValue[Gyro]) < (heading*10)-5)
 		{
-			motor[rightBack] = -speed*0.8;
-			motor[rightFront] = -speed*0.8;
-			motor[leftBack] = -speed;
-			motor[leftFront] = -speed;
+			motor[rightDrive] = -speed*0.8;
+			motor[leftDrive] = -speed;
 		}
 
 		else if (abs(SensorValue[Gyro]) > (heading*10)+5)
 		{
-			motor[rightBack] = -speed;
-			motor[rightFront] = -speed;
-			motor[leftBack] = -speed*0.8;
-			motor[leftFront] = -speed*0.8;
+			motor[rightDrive] = -speed;
+			motor[leftDrive] = -speed*0.8;
 		}
 	}
 	//Brief brake to stop some drift
-	motor[rightBack] = -5;
-	motor[rightFront] = -5;
-	motor[leftBack] = -5;
-	motor[leftFront] = -5;
+	motor[rightDrive] = -5;
+	motor[leftDrive] = -5;
 	wait1Msec(250);
 }
 
@@ -122,20 +100,13 @@ void rightturn(int speed, int heading)
 	while(abs(SensorValue[Gyro]) > heading*10)
 	{
 		//...continue turning
-		motor[rightBack] = -speed;
-		motor[rightFront] = -speed;
-		motor[leftBack] = speed;
-		motor[leftFront] = speed;
+		motor[rightDrive] = -speed;
+		motor[leftDrive] = speed;
 	}
 
 	//Brief brake to stop some drift
-	motor[rightBack] = 5;
-	motor[rightBack] = speed;
-	motor[rightFront] = speed;
-	motor[leftBack] = speed;
-	motor[rightFront] = 5;
-	motor[leftBack] = -5;
-	motor[leftFront] = -5;
+	motor[rightDrive] = 5;
+	motor[leftDrive] = -5;
 	SensorValue[Gyro] = 0;
 	wait1Msec(250);
 }
@@ -147,17 +118,13 @@ void leftturn(int speed, int heading)
 	while(abs(SensorValue[Gyro]) < heading*10)
 	{
 		//...continue turning
-		motor[rightBack] = speed;
-		motor[rightFront] = speed;
-		motor[leftBack] = -speed;
-		motor[leftFront] = -speed;
+		motor[rightDrive] = speed;
+		motor[leftDrive] = -speed;
 	}
 
 	//Brief brake to stop some drift
-	motor[rightBack] = -5;
-	motor[rightFront] = -5;
-	motor[leftBack] = 5;
-	motor[leftFront] = 5;
+	motor[rightDrive] = -5;
+	motor[leftDrive] = 5;
 	SensorValue[Gyro] = 0;
 	wait1Msec(250);
 }
@@ -204,10 +171,8 @@ void liftDown(int targetPot)
 
 void wait(int time)
 {
-	motor[rightBack] = 0;
-	motor[leftBack] = 0;
-	motor[rightFront] = 0;
-	motor[leftFront] = 0;
+	motor[rightDrive] = 0;
+	motor[leftDrive] = 0;
 	motor[leftMidLift] = 0;
 	motor[leftTopLift] = 0;
 	motor[rightMidLift] = 0;
