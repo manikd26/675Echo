@@ -23,24 +23,3 @@ task driveTask()
 		motor[rightDrive] = 0;
 	}
 }
-
-task pneumatics()
-{
-	while(true)
-	{
-		if(vexRT[Btn8D] != actuateClaw)
-		{
-			actuateClaw = !actuateClaw;
-			if(actuateClaw)
-				SensorValue[pistonClaw] = !SensorValue[pistonClaw];
-		}
-
-		if(vexRT[Btn8R] != actuateLaunch)
-		{
-			actuateLaunch = !actuateLaunch;
-			if(actuateLaunch)
-				SensorValue[pistonLaunch] = !SensorValue[pistonLaunch];
-		}
-
-	}
-}

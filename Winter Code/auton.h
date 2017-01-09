@@ -95,7 +95,7 @@ void backwardgyro(int speed, int distance, int heading)
 
 //////////////////////////////////////////////////
 
-void rightturn(int speed, int heading)
+void rightTurn(int speed, int heading)
 {
 	while(abs(SensorValue[Gyro]) > heading*10)
 	{
@@ -113,7 +113,7 @@ void rightturn(int speed, int heading)
 
 //////////////////////////////////////////////////
 
-void leftturn(int speed, int heading)
+void leftTurn(int speed, int heading)
 {
 	while(abs(SensorValue[Gyro]) < heading*10)
 	{
@@ -135,16 +135,49 @@ void liftUp(int targetPot)
 {
 	while (SensorValue[liftPot] < targetPot)
 	{
-		motor[leftMidLift] = 127;
-		motor[leftTopLift] = 127;
+		motor[rightBotLift] = 127;
 		motor[rightMidLift] = 127;
 		motor[rightTopLift] = 127;
+		motor[leftBotLift] = 127;
+		motor[leftMidLift] = 127;
+		motor[leftTopLift] = 127;
 	}
 
-	motor[leftMidLift] = 0;
-	motor[leftTopLift] = 0;
+	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
+	motor[leftBotLift] = 0;
+	motor[leftMidLift] = 0;
+	motor[leftTopLift] = 0;
+	wait1Msec (250);
+}
+
+//////////////////////////////////////////////////
+void liftUpPot(int targetPot)
+{
+	while (SensorValue[liftPot] < targetPot)
+	{
+		motor[rightBotLift] = 127;
+		motor[rightMidLift] = 127;
+		motor[rightTopLift] = 127;
+		motor[leftBotLift] = 127;
+		motor[leftMidLift] = 127;
+		motor[leftTopLift] = 127;
+	}
+
+	if (SensorValue[liftPot] > targetPot)
+	{
+		motor[rightClaw] = -105;
+		motor[leftClaw] = -105;
+		wait1Msec(650);
+	}
+
+	motor[rightBotLift] = 0;
+	motor[rightMidLift] = 0;
+	motor[rightTopLift] = 0;
+	motor[leftBotLift] = 0;
+	motor[leftMidLift] = 0;
+	motor[leftTopLift] = 0;
 	wait1Msec (250);
 }
 
@@ -154,46 +187,56 @@ void liftDown(int targetPot)
 {
 	while (SensorValue[liftPot] > targetPot)
 	{
-		motor[leftMidLift] = -127;
-		motor[leftTopLift] = -127;
+		motor[rightBotLift] = -127;
 		motor[rightMidLift] = -127;
 		motor[rightTopLift] = -127;
+		motor[leftBotLift] = -127;
+		motor[leftMidLift] = -127;
+		motor[leftTopLift] = -127;
 	}
 
-	motor[leftMidLift] = 0;
-	motor[leftTopLift] = 0;
+	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
+	motor[leftBotLift] = 0;
+	motor[leftMidLift] = 0;
+	motor[leftTopLift] = 0;
 	wait1Msec (250);
+}
+
+//////////////////////////////////////////////////
+
+void openClaw(int time)
+{
+	motor[rightClaw] = 105;
+	motor[leftClaw] = 105;
+	wait1Msec(time);
+}
+
+//////////////////////////////////////////////////
+
+void closeClaw(int time)
+{
+	motor[rightClaw] = -105;
+	motor[leftClaw] = -105;
+	wait1Msec(time);
 }
 
 //////////////////////////////////////////////////
 
 void wait(int time)
 {
-	motor[rightDrive] = 0;
-	motor[leftDrive] = 0;
-	motor[leftMidLift] = 0;
-	motor[leftTopLift] = 0;
+	motor[rightBotLift] = 0;
 	motor[rightMidLift] = 0;
 	motor[rightTopLift] = 0;
+	motor[leftBotLift] = 0;
+	motor[leftMidLift] = 0;
+	motor[leftTopLift] = 0;
+	motor[rightDrive] = 0;
+	motor[leftDrive] = 0;
+	motor[rightClaw] = 0;
+	motor[leftClaw] = 0;
 	wait1Msec(time);
 }
 
 //////////////////////////////////////////////////
-
-void openClaw()
-{
-	SensorValue[pistonClaw] = 1;
-}
-
-void closeClaw()
-{
-	SensorValue[pistonClaw] = 0;
-}
-
-void shootLaunch(int time)
-{
-	SensorValue[pistonLaunch] = 1;
-	wait(time);
-}
