@@ -207,23 +207,21 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			closeClaw(1000);
+			openClaw(750);
 			wait(200);
 			liftUp(1500);
 			wait(200);
-			forward(127, 500);
+			forward(127, 1300);
 			wait(200);
-			backward(127, 100);
+			backward(127, 300);
 			wait(200);
 			leftTurn(127, 20);
 			wait(200);
+			forward(127, 500);
+			wait(200);
+			rightTurn(127,10);
+			wait(200);
 			forward(127, 100);
-			wait(200);
-			backward(127, 100);
-			wait(200);
-			rightTurn(127, 40);
-			wait(200);
-			forward(127,100);
 			wait(2000);
 
 
