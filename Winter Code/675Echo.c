@@ -209,7 +209,7 @@ task autonomous()
 
 			openClaw(750);
 			wait(200);
-			liftUp(1500);
+			liftUp(1400);
 			wait(200);
 			forward(127, 1300);
 			wait(200);
@@ -217,9 +217,9 @@ task autonomous()
 			wait(200);
 			leftTurn(127, 20);
 			wait(200);
-			forward(127, 500);
+			forward(127, 100);
 			wait(200);
-			rightTurn(127,10);
+			rightTurn(127, 10);
 			wait(200);
 			forward(127, 100);
 			wait(2000);
