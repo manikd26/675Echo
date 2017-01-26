@@ -1,37 +1,32 @@
 float baseClaw;
 bool mrParsonSucks = true;
+
 task manualLift()
 {
 	while(true)
 	{
 		if(vexRT(Btn6U))
 		{
-			motor[rightBotLift] = 105;
-			motor[rightMidLift] = 105;
-			motor[rightTopLift] = 105;
-			motor[leftBotLift] = 105;
-			motor[leftMidLift] = 105;
-			motor[leftTopLift] = 105;
+			motor[rightMidLift] = 127;
+			motor[leftMidLift] = 127;
+			motor[rightLift] = 127;
+			motor[leftLift] = 127;
 		}
 
 		else if(vexRT(Btn6D))
 		{
-			motor[rightBotLift] = -105;
-			motor[rightMidLift] = -105;
-			motor[rightTopLift] = -105;
-			motor[leftBotLift] = -105;
-			motor[leftMidLift] = -105;
-			motor[leftTopLift] = -105;
+			motor[rightMidLift] = -127;
+			motor[leftMidLift] = -127;
+			motor[rightLift] = -127;
+			motor[leftLift] = -127;
 		}
 
 		else
 		{
-			motor[rightBotLift] = 0;
 			motor[rightMidLift] = 0;
-			motor[rightTopLift] = 0;
-			motor[leftBotLift] = 0;
 			motor[leftMidLift] = 0;
-			motor[leftTopLift] = 0;
+			motor[rightLift] = 0;
+			motor[leftLift] = 0;
 		}
 
 
@@ -39,21 +34,17 @@ task manualLift()
 		{
 			if (vexRT(Btn6D))
 			{
-				motor[rightBotLift] = 0;
 				motor[rightMidLift] = 0;
-				motor[rightTopLift] = 0;
-				motor[leftBotLift] = 0;
 				motor[leftMidLift] = 0;
-				motor[leftTopLift] = 0;
+				motor[rightLift] = 0;
+				motor[leftLift] = 0;
 			}
 			else if (vexRT(Btn6U))
 			{
-				motor[rightBotLift] = 105;
-				motor[rightMidLift] = 105;
-				motor[rightTopLift] = 105;
-				motor[leftBotLift] = 105;
-				motor[leftMidLift] = 105;
-				motor[leftTopLift] = 105;
+				motor[rightMidLift] = 127;
+				motor[leftMidLift] = 127;
+				motor[rightLift] = 127;
+				motor[leftLift] = 127;
 			}
 		}
 	}
@@ -65,13 +56,13 @@ task claw()
 	{
 		if (vexRT(Btn5U))
 		{
-			motor[rightClaw] = 105;
-			motor[leftClaw] = 105;
+			motor[rightClaw] = 127;
+			motor[leftClaw] = 127;
 		}
 		else if (vexRT(Btn5D))
 		{
-			motor[rightClaw] = -105;
-			motor[leftClaw] = -105;
+			motor[rightClaw] = -127;
+			motor[leftClaw] = -127;
 		}
 		else
 		{
@@ -81,8 +72,8 @@ task claw()
 
 		if (SensorValue[liftPot] > 1800 && mrParsonSucks)
 		{
-			motor[rightClaw] = -105;
-			motor[leftClaw] = -105;
+			motor[rightClaw] = -127;
+			motor[leftClaw] = -127;
 			wait1Msec(650);
 			mrParsonSucks = false;
 		}
