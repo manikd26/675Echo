@@ -235,30 +235,62 @@ void liftDown(int targetPot)
 	motor[leftMidLift] = 0;
 	motor[rightLift] = 0;
 	motor[leftLift] = 0;
-	wait1Msec (250);
+	wait1Msec(250);
 }
 
 //////////////////////////////////////////////////
 
-void openClaw(int speed, int time)
+void openClaw(int targetPot)
 {
-	motor[rightClaw] = speed;
-	motor[leftClaw] = speed;
-
-	wait1Msec(time);
+	while (SensorValue[clawPot] < targetPot)
+	{
+		motor[rightClaw] = 127;
+		motor[leftClaw] = 127;
+	}
 
 	motor[rightClaw] = 0;
-	motor[leftclaw] = 0;
+	motor[leftClaw] = 0;
+
+	wait1Msec(250);
 
 }
 
 //////////////////////////////////////////////////
 
-void closeClaw(int time)
+void closeClaw(int targetPot)
 {
-	motor[rightClaw] = -127;
-	motor[leftClaw] = -127;
-	wait1Msec(time);
+	while (SensorValue[clawPot] > targetPot)
+	{
+		motor[rightClaw] = -127;
+		motor[leftClaw] = -127;
+	}
+
+	motor[rightClaw] = 0;
+	motor[leftClaw] = 0;
+
+	wait1Msec(250);
+}
+
+//////////////////////////////////////////////////
+
+void clawFunction(int targetPot)
+{
+	while (SensorValue[clawPot] < targetPot)
+	{
+		motor[rightClaw] = -127;
+		motor[leftClaw] = -127;
+	}
+  while (SensorValue[clawPot] > targetPot)
+	{
+		motor[rightClaw] = 127;
+		motor[leftClaw] = 127;
+	}
+
+	motor[rightClaw] = 0;
+	motor[leftClaw] = 0;
+
+	wait1Msec(250);
+
 }
 
 //////////////////////////////////////////////////

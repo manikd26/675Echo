@@ -3,6 +3,7 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
 #pragma config(Sensor, in1,    Gyro,           sensorGyro)
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
+#pragma config(Sensor, in3,    clawPot,        sensorPotentiometer)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           leftMidLift,   tmotorVex393_HBridge, openLoop)
@@ -261,11 +262,11 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			openClaw(127, 250);
+			openClaw(1000);
 			wait(200);
 			liftUp(1400);
 			wait(200);
-			forward(127, 10);
+			forward(127, 500);
 			wait(200);
 			backward(127, 300);
 			wait(200);
@@ -288,6 +289,8 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
+			openClaw(600);
+
 
 
 
@@ -302,25 +305,25 @@ task autonomous()
 
 			forward(127, 410);
 			wait(100);
-			leftTurn(127, 40);
+			leftTurn(127, 35);
 			wait(100);
 			forward(127, 600);
 			wait(100);
-			openClaw(127, 1550);
+			clawFunction(600);
 			liftUp(1500);
 			forward(127, 200);
 			leftTurn(127, 90);
-			openClaw(127, 300);
+			clawFunction(620);
 			backward(127, 520);
 			liftUp(1950);
-			openClaw(-127, 500);
+			clawFunction(300);
 			liftDown(500);
 			forward(127, 700);
-			openClaw(127, 1200);
+			clawFunction(800);
 			forward(127, 50);
 			backward(127, 600);
 			liftUp(1900);
-			openClaw(-127, 400);
+			clawFunction(400);
 			liftDown(500);
 			wait(2000);
 
@@ -340,28 +343,28 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			forward(127, 410);
+			forward(127, 420);
 			wait(100);
-			leftTurn(-127, 40);
+			leftTurn(-127, 30);
 			wait(100);
 			forward(127, 600);
 			wait(100);
-			openClaw(127, 1550);
+			clawFunction(1000);
 			liftUp(1500);
 			forward(127, 200);
-			leftTurn(-127, 90);
-			openClaw(127, 300);
-			backward(127, 520);
-			liftUp(1950);
-			openClaw(-127, 500);
-			liftDown(500);
+			leftTurn(-127, 100);
+			clawFunction(400);
+			backward(127, 550);
+			liftUp(2800);
+			clawFunction(900);
+			liftDown(550);
 			forward(127, 700);
-			openClaw(127, 1000);
+			clawFunction(400);
 			forward(127, 50);
-			backward(127, 600);
+			backward(127, 800);
 			liftUp(1900);
-			openClaw(-127, 400);
-			liftDown(500);
+			clawFunction(1000);
+			liftDown(550);
 			wait(2000);
 
 
