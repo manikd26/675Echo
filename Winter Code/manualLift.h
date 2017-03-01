@@ -21,6 +21,15 @@ task manualLift()
 			motor[leftLift] = -127;
 		}
 
+		else if(vexRT(Btn8D))
+		{
+			motor[rightMidLift] = -60;
+			motor[leftMidLift] = -60;
+			motor[rightLift] = -60;
+			motor[leftLift] = -60;
+
+		}
+
 		else
 		{
 			motor[rightMidLift] = 0;
@@ -29,25 +38,51 @@ task manualLift()
 			motor[leftLift] = 0;
 		}
 
-
-		while (SensorValue[liftPot] < 575)
-		{
-			if (vexRT(Btn6D))
+//		if (abs(SensorValue[vertGyro]) < 300)
+//		{
+			while (SensorValue[liftPot] < 535)
 			{
-				motor[rightMidLift] = 0;
-				motor[leftMidLift] = 0;
-				motor[rightLift] = 0;
-				motor[leftLift] = 0;
+				if (vexRT(Btn6D))
+				{
+					motor[rightMidLift] = 0;
+					motor[leftMidLift] = 0;
+					motor[rightLift] = 0;
+					motor[leftLift] = 0;
+				}
+				else if (vexRT(Btn6U))
+				{
+					motor[rightMidLift] = 127;
+					motor[leftMidLift] = 127;
+					motor[rightLift] = 127;
+					motor[leftLift] = 127;
+				}
 			}
-			else if (vexRT(Btn6U))
+//		}
+
+/**		if (abs(SensorValue[vertGyro]) > 300)
 			{
-				motor[rightMidLift] = 127;
-				motor[leftMidLift] = 127;
-				motor[rightLift] = 127;
-				motor[leftLift] = 127;
+			while (SensorValue[liftPot] < 575)
+			{
+				if (vexRT(Btn6D)
+				{
+					motor[rightMidLift] = -127;
+					motor[leftMidLift] = -127;
+					motor[rightLift] = -127;
+					motor[leftLift] = -127;
+				}
+				else if (vexRT(Btn6U))
+				{
+					motor[rightMidLift] = 127;
+					motor[leftMidLift] = 127;
+					motor[rightLift] = 127;
+					motor[leftLift] = 127;
+				}
 			}
 		}
 	}
+	**/
+
+}
 }
 
 task claw()
@@ -70,14 +105,17 @@ task claw()
 			motor[leftClaw]= 0;
 		}
 
-		if (SensorValue[liftPot] > 1800 && mrParsonSucks)
+		if (SensorValue[liftPot] > 1750 && mrParsonSucks)
 		{
+			/**
 			motor[rightClaw] = -127;
 			motor[leftClaw] = -127;
 			wait1Msec(650);
+			**/
+			clawFunction(840);
 			mrParsonSucks = false;
 		}
-		if (SensorValue[liftPot] < 1800) {
+		if (SensorValue[liftPot] < 1750) {
 			mrParsonSucks = true;
 		}
 

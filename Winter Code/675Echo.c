@@ -4,6 +4,7 @@
 #pragma config(Sensor, in1,    Gyro,           sensorGyro)
 #pragma config(Sensor, in2,    liftPot,        sensorPotentiometer)
 #pragma config(Sensor, in3,    clawPot,        sensorPotentiometer)
+#pragma config(Sensor, in4,    vertGyro,       sensorGyro)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           leftMidLift,   tmotorVex393_HBridge, openLoop)
@@ -25,8 +26,9 @@
 #include "Vex_Competition_Includes.c"
 
 #include "drive.h"
-#include "manualLift.h"
 #include "auton.h"
+#include "manualLift.h"
+#include "tasks.h"
 
 //////////////////////////////////////////////////
 
@@ -57,6 +59,7 @@ void pre_auton()
 	nMotorEncoder(rightFront) = 0;
 	nMotorEncoder(leftFront) = 0;
 	SensorValue(Gyro) = 0;
+	SensorValue(vertGyro) = 0;
 
 	bLCDBacklight= true;
 
@@ -122,14 +125,14 @@ void pre_auton()
 			/////////////////////////////////////////////////////////////////////////////////
 
 		case 2:
-			displayLCDCenteredString(0, "F-->C RIGHT");
+			displayLCDCenteredString(0, "C-->S LEFT");
 			displayLCDCenteredString(1, "<		 Enter 		>");
 			waitforpress();
 
 			if (nLCDButtons == centerbutton)
 			{
 				waitforrelease();
-				displayLCDCenteredString(0, "F-->C RIGHT?");
+				displayLCDCenteredString(0, "C-->S LEFT?");
 				displayLCDCenteredString(1, "||YES||");
 				wait1Msec (1000);
 				waitforpress();
@@ -176,14 +179,14 @@ void pre_auton()
 			/////////////////////////////////////////////////////////////////////////////////
 
 		case 4:
-			displayLCDCenteredString(0, "F-->C LEFT");
+			displayLCDCenteredString(0, "C-->Bl LEFT");
 			displayLCDCenteredString(1, "<		 Enter 		>");
 			waitforpress();
 
 			if (nLCDButtons == centerbutton)
 			{
 				waitforrelease();
-				displayLCDCenteredString(0, "F-->C LEFT?");
+				displayLCDCenteredString(0, "C-->Bl LEFT?");
 				displayLCDCenteredString(1, "||YES||");
 				wait1Msec (1000);
 				waitforpress();
@@ -203,14 +206,149 @@ void pre_auton()
 			/////////////////////////////////////////////////////////////////////////////////
 
 		case 5:
-			displayLCDCenteredString(0, "C-->S LEFT");
+			displayLCDCenteredString(0, "C-->Bl RIGHT");
 			displayLCDCenteredString(1, "<		 Enter 		>");
 			waitforpress();
 
 			if (nLCDButtons == centerbutton)
 			{
 				waitforrelease();
-				displayLCDCenteredString(0, "C-->S LEFT?");
+				displayLCDCenteredString(0, "C-->Bl RIGHT?");
+				displayLCDCenteredString(1, "||YES||");
+				wait1Msec (1000);
+				waitforpress();
+			}
+			if(nLCDButtons == leftbutton)
+			{
+				waitforrelease();
+				count--;
+			}
+			else if(nLCDButtons == rightbutton)
+			{
+				waitforrelease();
+				count++;
+			}
+			break;
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+		case 6:
+			displayLCDCenteredString(0, "Back 3 LEFT");
+			displayLCDCenteredString(1, "<		 Enter 		>");
+			waitforpress();
+
+			if (nLCDButtons == centerbutton)
+			{
+				waitforrelease();
+				displayLCDCenteredString(0, "Back 3 LEFT?");
+				displayLCDCenteredString(1, "||YES||");
+				wait1Msec (1000);
+				waitforpress();
+			}
+			if(nLCDButtons == leftbutton)
+			{
+				waitforrelease();
+				count--;
+			}
+			else if(nLCDButtons == rightbutton)
+			{
+				waitforrelease();
+				count++;
+			}
+			break;
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+		case 7:
+			displayLCDCenteredString(0, "Back 3 RIGHT");
+			displayLCDCenteredString(1, "<		 Enter 		>");
+			waitforpress();
+
+			if (nLCDButtons == centerbutton)
+			{
+				waitforrelease();
+				displayLCDCenteredString(0, "Back 3 RIGHT?");
+				displayLCDCenteredString(1, "||YES||");
+				wait1Msec (1000);
+				waitforpress();
+			}
+			if(nLCDButtons == leftbutton)
+			{
+				waitforrelease();
+				count--;
+			}
+			else if(nLCDButtons == rightbutton)
+			{
+				waitforrelease();
+				count++;
+			}
+			break;
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+		case 8:
+			displayLCDCenteredString(0, "Back 3ACR LEFT");
+			displayLCDCenteredString(1, "<		 Enter 		>");
+			waitforpress();
+
+			if (nLCDButtons == centerbutton)
+			{
+				waitforrelease();
+				displayLCDCenteredString(0, "Back 3ACR LEFT?");
+				displayLCDCenteredString(1, "||YES||");
+				wait1Msec (1000);
+				waitforpress();
+			}
+			if(nLCDButtons == leftbutton)
+			{
+				waitforrelease();
+				count--;
+			}
+			else if(nLCDButtons == rightbutton)
+			{
+				waitforrelease();
+				count++;
+			}
+			break;
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+		case 9:
+			displayLCDCenteredString(0, "Back 3ACR RIGHT");
+			displayLCDCenteredString(1, "<		 Enter 		>");
+			waitforpress();
+
+			if (nLCDButtons == centerbutton)
+			{
+				waitforrelease();
+				displayLCDCenteredString(0, "Back 3ACR RIGHT?");
+				displayLCDCenteredString(1, "||YES||");
+				wait1Msec (1000);
+				waitforpress();
+			}
+			if(nLCDButtons == leftbutton)
+			{
+				waitforrelease();
+				count--;
+			}
+			else if(nLCDButtons == rightbutton)
+			{
+				waitforrelease();
+				count++;
+			}
+			break;
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+		case 10:
+			displayLCDCenteredString(0, "Programming Skills");
+			displayLCDCenteredString(1, "<		 Enter 		>");
+			waitforpress();
+
+			if (nLCDButtons == centerbutton)
+			{
+				waitforrelease();
+				displayLCDCenteredString(0, "Programming Skills?");
 				displayLCDCenteredString(1, "||YES||");
 				wait1Msec (1000);
 				waitforpress();
@@ -226,6 +364,23 @@ void pre_auton()
 				count = 0;
 			}
 			break;
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+
+
+			/////////////////////////////////////////////////////////////////////////////////
+
+
 
 			/////////////////////////////////////////////////////////////////////////////////
 
@@ -247,6 +402,11 @@ task autonomous()
 		clearLCDLine(0);
 		clearLCDLine(1);
 
+		nMotorEncoder(rightFront) = 0;
+		nMotorEncoder(leftFront) = 0;
+		SensorValue(Gyro) = 0;
+		SensorValue(vertGyro) = 0;
+
 		switch(count){
 
 		case 0:
@@ -262,34 +422,50 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			openClaw(1000);
-			wait(200);
-			liftUp(1400);
-			wait(200);
-			forward(127, 500);
-			wait(200);
-			backward(127, 300);
-			wait(200);
-			leftTurn(127, 20);
-			wait(200);
-			forward(127, 100);
-			wait(200);
-			rightTurn(127, 10);
-			wait(200);
-			forward(127, 100);
-			wait(2000);
-
+			clawFunction(1750);
+			liftUp(1750);
+			forward(127, 1600);
 
 			break;
 
 			///////////////////////////////////////////////////////////////////////////////////////
 
 		case 2:
-			displayLCDCenteredString(0, "F-->C RIGHT");
+			displayLCDCenteredString(0, "C-->S LEFT");
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			openClaw(600);
+			if(getTaskState(CSLeftDrive) == taskStateStopped)
+				startTask(CSLeftDrive);
+			if(getTaskState(CSLeftClaw) == taskStateStopped)
+				startTask(CSLeftClaw);
+			if(getTaskState(CSLeftLift) == taskStateStopped)
+				startTask(CSLeftLift);
+
+
+			//forward(127, 420);
+			//wait(100);
+			//leftTurn(-127, 30);
+			//wait(100);
+			//forward(127, 600);
+			//wait(100);
+			//clawFunction(800);
+			//liftUp(1500);
+			//forward(127, 200);
+			//leftTurn(-127, 100);
+			//clawFunction(400);
+			//backward(127, 550);
+			//liftUp(2200);
+			//clawFunction(900);
+			//liftDown(550);
+			//forward(127, 700);
+			//clawFunction(400);
+			//forward(127, 50);
+			//backward(127, 800);
+			//liftUp(2200);
+			//clawFunction(1000);
+			//liftDown(550);
+			//wait(2000);
 
 
 
@@ -303,70 +479,97 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
-			forward(127, 410);
-			wait(100);
-			leftTurn(127, 35);
-			wait(100);
-			forward(127, 600);
-			wait(100);
-			clawFunction(600);
-			liftUp(1500);
-			forward(127, 200);
-			leftTurn(127, 90);
-			clawFunction(620);
-			backward(127, 520);
-			liftUp(1950);
-			clawFunction(300);
-			liftDown(500);
-			forward(127, 700);
-			clawFunction(800);
-			forward(127, 50);
-			backward(127, 600);
-			liftUp(1900);
-			clawFunction(400);
-			liftDown(500);
-			wait(2000);
-
-			break;
-
-		case 4:
-			displayLCDCenteredString(0, "F-->C LEFT");
-			displayLCDCenteredString(1, "is running!");
-			wait1Msec(100);
-
-
-			break;
-
-
-		case 5:
-			displayLCDCenteredString(0, "C-->S LEFT");
-			displayLCDCenteredString(1, "is running!");
-			wait1Msec(100);
-
 			forward(127, 420);
 			wait(100);
-			leftTurn(-127, 30);
+			leftTurn(127, 30);
 			wait(100);
 			forward(127, 600);
 			wait(100);
-			clawFunction(1000);
+			clawFunction(800);
 			liftUp(1500);
 			forward(127, 200);
-			leftTurn(-127, 100);
+			leftTurn(127, 100);
 			clawFunction(400);
 			backward(127, 550);
-			liftUp(2800);
+			liftUp(2200);
 			clawFunction(900);
 			liftDown(550);
 			forward(127, 700);
 			clawFunction(400);
 			forward(127, 50);
 			backward(127, 800);
-			liftUp(1900);
+			liftUp(2200);
 			clawFunction(1000);
 			liftDown(550);
 			wait(2000);
 
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 4:
+			displayLCDCenteredString(0, "C-->Bl LEFT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+
+		case 5:
+			displayLCDCenteredString(0, "C-->BL RIGHT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 6:
+			displayLCDCenteredString(0, "Back 3 LEFT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 7:
+			displayLCDCenteredString(0, "Back 3 RIGHT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 8:
+			displayLCDCenteredString(0, "Back 3ACR LEFT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 9:
+			displayLCDCenteredString(0, "Back 3ACR RIGHT");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+			break;
+
+			//////////////////////////////////////////////////////////////////////////////////////
+
+		case 10:
+			displayLCDCenteredString(0, "Programming Skills");
+			displayLCDCenteredString(1, "is running!");
+			wait1Msec(100);
+
+
+
+			//////////////////////////////////////////////////////////////////////////////////////
 
 		}
 	}
@@ -376,6 +579,8 @@ task autonomous()
 
 task usercontrol()
 {
+	SensorValue(vertGyro) = 0;
+
 	while (true)
 	{
 		displayLCDCenteredString(0, "M + D");

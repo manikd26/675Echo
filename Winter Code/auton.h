@@ -2,7 +2,6 @@ void forward(int speed, int distance)
 {
 	nMotorEncoder[leftFront] = 0;
 	nMotorEncoder[rightFront] = 0;
-	wait1Msec(100);
 
 	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
 	{
@@ -13,10 +12,10 @@ void forward(int speed, int distance)
 	}
 
 	//Brief brake to stop some drift
-	motor[rightFront] = -2;
-	motor[leftFront] = -2;
-	motor[leftBack] = -2;
-	motor[rightBack] = -2;
+	motor[rightFront] = -5;  //-5
+	motor[leftFront] = -5;
+	motor[leftBack] = -5;
+	motor[rightBack] = -5;
 	wait1Msec(250);
 }
 
@@ -26,7 +25,6 @@ void backward(int speed, int distance)
 {
 	nMotorEncoder[leftFront] = 0;
 	nMotorEncoder[rightFront] = 0;
-	wait1Msec(100);
 
 	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
 	{
@@ -179,19 +177,12 @@ void liftUp(int targetPot)
 		motor[leftLift] = 127;
 	}
 
-	if (SensorValue[liftPot] < targetPot)
-	{
-		motor[rightMidLift] = 127;
-		motor[leftMidLift] = 127;
-		motor[rightLift] = 127;
-		motor[leftLift] = 127;
-	}
 
-	motor[rightMidLift] = 0;
-	motor[leftMidLift] = 0;
-	motor[rightLift] = 0;
-	motor[leftLift] = 0;
-	wait1Msec (250);
+	motor[rightMidLift] = -5;
+	motor[leftMidLift] = -5;
+	motor[rightLift] = -5;
+	motor[leftLift] = -5;
+	wait1Msec (500);
 }
 
 //////////////////////////////////////////////////
@@ -248,8 +239,8 @@ void openClaw(int targetPot)
 		motor[leftClaw] = 127;
 	}
 
-	motor[rightClaw] = 0;
-	motor[leftClaw] = 0;
+	motor[rightClaw] = -5;
+	motor[leftClaw] = -5;
 
 	wait1Msec(250);
 
@@ -280,17 +271,25 @@ void clawFunction(int targetPot)
 		motor[rightClaw] = -127;
 		motor[leftClaw] = -127;
 	}
-  while (SensorValue[clawPot] > targetPot)
+	while (SensorValue[clawPot] > targetPot)
 	{
 		motor[rightClaw] = 127;
 		motor[leftClaw] = 127;
 	}
 
-	motor[rightClaw] = 0;
-	motor[leftClaw] = 0;
+	motor[rightClaw] = -10;
+	motor[leftClaw] = -10;
 
-	wait1Msec(250);
+	wait1Msec(500);
 
+}
+
+void clawHold(int time)
+{
+	motor[rightClaw] = 60;
+	motor[leftClaw ] = 60;
+
+	wait1Msec(time);
 }
 
 //////////////////////////////////////////////////
@@ -301,3 +300,63 @@ void wait(int time)
 }
 
 //////////////////////////////////////////////////
+
+void driveFAndLift(int speed, int distance, int targetPot)
+{
+	nMotorEncoder[leftFront] = 0;
+	nMotorEncoder[rightFront] = 0;
+	wait1Msec(100);
+
+
+	while(((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance)))
+	{
+		motor[rightFront] = speed;
+		motor[leftFront] = speed;
+		motor[rightBack] = speed;
+		motor[leftBack] = speed;
+
+		while (SensorValue[liftPot] < targetPot)
+		{
+			motor[rightMidLift] = 127;
+			motor[leftMidLift] = 127;
+			motor[rightLift] = 127;
+			motor[leftLift] = 127;
+
+		}
+	}
+
+	motor[rightFront] = -5;
+	motor[leftFront] = -5;
+	motor[rightBack] = -5;
+	motor[leftBack] = -5;
+
+	motor[rightMidLift] = -15;
+	motor[rightLift] = -15;
+	motor[leftMidLift] = -15;
+	motor[leftLift] = -15;
+
+	wait1Msec(500);
+}
+
+//////////////////////////////////////////////////
+
+void driveAndClaw(int speed, int distance, int targetPot)
+{
+	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
+	{
+		motor[rightFront] = speed;
+		motor[leftFront] = speed;
+		motor[rightBack] = speed;
+		motor[leftBack] = speed;
+	}
+
+	while((abs(nMotorEncoder[rightFront]) > distance) || (abs(nMotorEncoder[leftFront]) > distance))
+	{
+		motor[rightFront] = -speed;
+		motor[leftFront] = -speed;
+		motor[rightBack] = -speed;
+		motor[leftBack] = -speed;
+	}
+
+	clawFunction(targetPot);
+}
