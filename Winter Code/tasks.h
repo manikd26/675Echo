@@ -152,21 +152,112 @@ task CSRightBlDrive()
 	backward(127, 500);
 }
 
-task CSRightBlClaw()
-{
-	wait1Msec(2000);
-	clawFunction(400);
-	clawHold(1000);
-	wait1Msec(1500);
-	clawFunction(1000);
+//task CSRightBlClaw()
+//{
+//	wait1Msec(2000);
+//	clawFunction(400);
+//	clawHold(1000);
+//	wait1Msec(1500);
+//	clawFunction(1000);
 
+//}
+
+//task CSRightBlLift()
+//{
+//	wait1Msec(3600);
+//	liftUp(1500);
+//	wait1Msec(1250);
+//	liftUp(2100); //2000
+//}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+
+task PSDrive()
+{
+	backward(127, 300);
+	wait1Msec(500);
+	forward(127, 210);
+	wait1Msec(1500);
+	backward(127, 800);
+	wait1Msec(500)
+	backward(60, 25);
+	wait1Msec(2000);
+	forward(127, 875);
+	leftTurn(90, 6.5);//
+	wait1Msec(500);
+	backward(127, 800);
+	wait1Msec(500);
+	forward(127, 25);
+	backward(60, 50);
+	wait1Msec(500);
+	forward(127, 875);
+	leftTurn(90, 6.5);//
+	wait1Msec(1000);
+	backward(127, 800);
+	wait1Msec(1000);
+	forward(127, 550);
+	wait1Msec(250);
+	leftTurn(127, 45);
+	wait1Msec(250);
+	forward(127, 600);
+	wait1Msec(500);
+	forward(127, 600);
+	wait1Msec(500);
+	leftTurn(-127, 90);
+	//forward(127, 800);
+	//backward(127, 800);
 }
 
-task CSRightBlLift()
+task PSClaw()
 {
-	wait1Msec(3600);
-	liftUp(1500);
-	wait1Msec(1250);
-	liftUp(2100); //2000
+	clawFunction(800);
+	wait1Msec(500);
+	clawFunction(200);
+	clawHold(1250);
+	clawFunction(1000);
+	wait1Msec(250);
+	clawFunction(1000);
+	wait1Msec(2150); //2150
+	clawfunction(400);
+	clawHold(1000);
+	clawFunction(1000);
+	wait1Msec(2000); //1750
+	clawFunction(400);
+	clawHold(1500);
+	clawFunction(1000);
+	wait1Msec(1000);
+	clawFunction(800);
+	wait1Msec(1750);
+	clawFunction(400);
+	//clawHold(1250);
+	//clawFunction(800);
+	//clawFunction(300);
+	//clawHold(1000);
+	//clawFunction(800);
+	//clawFunction(300);
+	//clawHold(1000);
+	//clawFunction(800);
+}
 
+task PSLift()
+{
+	wait1Msec(3000);
+	liftUp(2100);
+	wait1Msec(1000);
+	liftDown(550);
+	wait1Msec(1500);
+	liftUp(2100);
+	wait1Msec(500);
+	liftDown(550);
+	wait1Msec(1500);
+	liftUp(2100);
+	wait1Msec(500);
+	liftDown(550);
+	wait1Msec(1750);
+	liftUp(1500);
+	//liftUp(2100);
+	//liftDown(550);
+	//liftUp(2100);
+	//liftDown(550);
 }

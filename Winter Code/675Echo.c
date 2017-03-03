@@ -253,7 +253,7 @@ void pre_auton()
 			else if(nLCDButtons == rightbutton)
 			{
 				waitforrelease();
-				count = 0;;
+				count = 0;
 			}
 			break;
 
@@ -414,10 +414,10 @@ task autonomous()
 
 			if(getTaskState(CSRightBlDrive) == taskStateStopped)
 				startTask(CSRightBlDrive);
-			if(getTaskState(CSRightBlClaw) == taskStateStopped)
-				startTask(CSRightBlClaw);
-			if(getTaskState(CSRightBlLift) == taskStateStopped)
-				startTask(CSRightBlLift);
+			if(getTaskState(CSLeftBlClaw) == taskStateStopped) // CSRightBlClaw & CSleftBLClaw sub for less tasks
+				startTask(CSLeftBlClaw);
+			if(getTaskState(CSLeftBlLift) == taskStateStopped)
+				startTask(CSLeftBlLift);
 
 			break;
 
@@ -428,6 +428,12 @@ task autonomous()
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
+			if(getTaskState(PSDrive) == taskStateStopped)
+				startTask(PSDrive);
+			if(getTaskState(PSClaw) == taskStateStopped)
+				startTask(PSClaw);
+			if(getTaskState(PSLift) == taskStateStopped)
+				startTask(PSLift);
 
 
 			//////////////////////////////////////////////////////////////////////////////////////
