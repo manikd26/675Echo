@@ -9,7 +9,7 @@ task CSLeftDrive()
 	wait1Msec(1000);
 	forward(127, 200);
 	wait1Msec(250);
-	leftTurn(-127, 95);
+	leftTurn(-127, 90);
 	wait1Msec(250);
 	backward(127, 500);
 	wait1Msec(2250);
@@ -28,7 +28,7 @@ task CSLeftClaw()
 	clawHold(1000);
 	wait1Msec(1500);
 	clawFunction(1000);
-	wait1Msec(1500);
+	wait1Msec(2000);
 	clawFunction(300);
 	clawHold(1000);
 	wait1Msec(1000);
@@ -177,13 +177,13 @@ task PSDrive()
 {
 	backward(127, 300);
 	wait1Msec(500);
-	forward(127, 210);
+	forward(127, 240);
 	wait1Msec(1500);
 	backward(127, 800);
 	wait1Msec(500)
 	backward(60, 25);
 	wait1Msec(2000);
-	forward(127, 875);
+	forward(127, 900);
 	leftTurn(90, 6.5);//
 	wait1Msec(500);
 	backward(127, 800);
@@ -191,7 +191,7 @@ task PSDrive()
 	forward(127, 25);
 	backward(60, 50);
 	wait1Msec(500);
-	forward(127, 875);
+	forward(127, 900);
 	leftTurn(90, 6.5);//
 	wait1Msec(1000);
 	backward(127, 800);
@@ -212,17 +212,17 @@ task PSDrive()
 task PSClaw()
 {
 	clawFunction(800);
-	wait1Msec(500);
+	wait1Msec(750);
 	clawFunction(200);
 	clawHold(1250);
 	clawFunction(1000);
 	wait1Msec(250);
 	clawFunction(1000);
-	wait1Msec(2150); //2150
+	wait1Msec(2350); //2150
 	clawfunction(400);
 	clawHold(1000);
 	clawFunction(1000);
-	wait1Msec(2000); //1750
+	wait1Msec(2250); //1750
 	clawFunction(400);
 	clawHold(1500);
 	clawFunction(1000);

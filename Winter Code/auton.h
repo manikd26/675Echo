@@ -2,6 +2,7 @@ void forward(int speed, int distance)
 {
 	nMotorEncoder[leftFront] = 0;
 	nMotorEncoder[rightFront] = 0;
+	wait1Msec(100);
 
 	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
 	{
@@ -25,6 +26,7 @@ void backward(int speed, int distance)
 {
 	nMotorEncoder[leftFront] = 0;
 	nMotorEncoder[rightFront] = 0;
+	wait1Msec(100);
 
 	while((abs(nMotorEncoder[rightFront]) < distance) || (abs(nMotorEncoder[leftFront]) < distance))
 	{

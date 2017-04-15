@@ -38,51 +38,51 @@ task manualLift()
 			motor[leftLift] = 0;
 		}
 
-//		if (abs(SensorValue[vertGyro]) < 300)
-//		{
-			while (SensorValue[liftPot] < 535)
+		//		if (abs(SensorValue[vertGyro]) < 300)
+		//		{
+		while (SensorValue[liftPot] < 550) //535
+		{
+			if (vexRT(Btn6D))
 			{
-				if (vexRT(Btn6D))
-				{
-					motor[rightMidLift] = 0;
-					motor[leftMidLift] = 0;
-					motor[rightLift] = 0;
-					motor[leftLift] = 0;
-				}
-				else if (vexRT(Btn6U))
-				{
-					motor[rightMidLift] = 127;
-					motor[leftMidLift] = 127;
-					motor[rightLift] = 127;
-					motor[leftLift] = 127;
-				}
+				motor[rightMidLift] = 0;
+				motor[leftMidLift] = 0;
+				motor[rightLift] = 0;
+				motor[leftLift] = 0;
 			}
-//		}
-
-/**		if (abs(SensorValue[vertGyro]) > 300)
+			else if (vexRT(Btn6U))
 			{
-			while (SensorValue[liftPot] < 575)
-			{
-				if (vexRT(Btn6D)
-				{
-					motor[rightMidLift] = -127;
-					motor[leftMidLift] = -127;
-					motor[rightLift] = -127;
-					motor[leftLift] = -127;
-				}
-				else if (vexRT(Btn6U))
-				{
-					motor[rightMidLift] = 127;
-					motor[leftMidLift] = 127;
-					motor[rightLift] = 127;
-					motor[leftLift] = 127;
-				}
+				motor[rightMidLift] = 127;
+				motor[leftMidLift] = 127;
+				motor[rightLift] = 127;
+				motor[leftLift] = 127;
 			}
 		}
-	}
-	**/
+		//		}
 
-}
+		/**		if (abs(SensorValue[vertGyro]) > 300)
+		{
+		while (SensorValue[liftPot] < 575)
+		{
+		if (vexRT(Btn6D)
+		{
+		motor[rightMidLift] = -127;
+		motor[leftMidLift] = -127;
+		motor[rightLift] = -127;
+		motor[leftLift] = -127;
+		}
+		else if (vexRT(Btn6U))
+		{
+		motor[rightMidLift] = 127;
+		motor[leftMidLift] = 127;
+		motor[rightLift] = 127;
+		motor[leftLift] = 127;
+		}
+		}
+		}
+		}
+		**/
+
+	}
 }
 
 task claw()
@@ -105,17 +105,17 @@ task claw()
 			motor[leftClaw]= 0;
 		}
 
-		if (SensorValue[liftPot] > 1750 && mrParsonSucks)
+		if (SensorValue[liftPot] > 1825 && mrParsonSucks) //1750
 		{
 			/**
 			motor[rightClaw] = -127;
 			motor[leftClaw] = -127;
 			wait1Msec(650);
 			**/
-			clawFunction(840);
+			clawFunction(1275);
 			mrParsonSucks = false;
 		}
-		if (SensorValue[liftPot] < 1750) {
+		if (SensorValue[liftPot] < 1825) {
 			mrParsonSucks = true;
 		}
 
