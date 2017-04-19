@@ -105,17 +105,17 @@ task claw()
 			motor[leftClaw]= 0;
 		}
 
-		if (SensorValue[liftPot] > 1875 && mrParsonSucks) //1750, 1825
+		if (SensorValue[liftPot] > 2100 && mrParsonSucks) //1750, 1825
 		{
 			/**
 			motor[rightClaw] = -127;
 			motor[leftClaw] = -127;
 			wait1Msec(650);
 			**/
-			clawFunction(1150);
+			clawFunction(1000);
 			mrParsonSucks = false;
 		}
-		if (SensorValue[liftPot] < 1875) {
+		if (SensorValue[liftPot] < 2100) {
 			mrParsonSucks = true;
 		}
 

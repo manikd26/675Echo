@@ -298,8 +298,9 @@ task autonomous()
 			wait1Msec(100);
 
 			clawFunction(1750);
-			liftUp(1750);
+			liftUp(1775);
 			forward(127, 1650);
+			backward(127, 200);
 
 			break;
 

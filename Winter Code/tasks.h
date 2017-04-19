@@ -9,7 +9,7 @@ task CSLeftDrive()
 	wait1Msec(1000);
 	forward(127, 200);
 	wait1Msec(250);
-	leftTurn(-127, 90);
+	leftTurn(-127, 70);
 	wait1Msec(250);
 	backward(127, 500);
 	wait1Msec(2250);
@@ -26,7 +26,7 @@ task CSLeftClaw()
 	wait1Msec(2000);
 	clawFunction(400);
 	clawHold(1000);
-	wait1Msec(1500);
+	wait1Msec(1000);//1500
 	clawFunction(1000);
 	wait1Msec(2000);
 	clawFunction(300);
