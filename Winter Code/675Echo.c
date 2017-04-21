@@ -233,14 +233,14 @@ void pre_auton()
 			/////////////////////////////////////////////////////////////////////////////////
 
 		case 6:
-			displayLCDCenteredString(0, "Prog Skills");
+			displayLCDCenteredString(0, "Fast Cube");
 			displayLCDCenteredString(1, "<		 Enter 		>");
 			waitforpress();
 
 			if (nLCDButtons == centerbutton)
 			{
 				waitforrelease();
-				displayLCDCenteredString(0, "Prog Skills?");
+				displayLCDCenteredString(0, "Fast Cube?");
 				displayLCDCenteredString(1, "||YES||");
 				wait1Msec (1000);
 				waitforpress();
@@ -319,29 +319,30 @@ task autonomous()
 				startTask(CSLeftLift);
 
 
-			//forward(127, 420);
-			//wait(100);
-			//leftTurn(-127, 30);
-			//wait(100);
-			//forward(127, 600);
-			//wait(100);
-			//clawFunction(800);
-			//liftUp(1500);
-			//forward(127, 200);
-			//leftTurn(-127, 100);
-			//clawFunction(400);
-			//backward(127, 550);
-			//liftUp(2200);
-			//clawFunction(900);
-			//liftDown(550);
-			//forward(127, 700);
-			//clawFunction(400);
-			//forward(127, 50);
-			//backward(127, 800);
-			//liftUp(2200);
-			//clawFunction(1000);
-			//liftDown(550);
-			//wait(2000);
+			/**forward(127, 420);
+			wait(100);
+			leftTurn(-127, 30);
+			wait(100);
+			forward(127, 600);
+			wait(100);
+			clawFunction(800);
+			liftUp(1500);
+			forward(127, 200);
+			leftTurn(-127, 100);
+			clawFunction(400);
+			backward(127, 550);
+			liftUp(2200);
+			clawFunction(900);
+			liftDown(550);
+			forward(127, 700);
+			clawFunction(400);
+			forward(127, 50);
+			backward(127, 800);
+			liftUp(2200);
+			clawFunction(1000);
+			liftDown(550);
+			wait(2000);
+			**/
 
 
 
@@ -425,16 +426,41 @@ task autonomous()
 			//////////////////////////////////////////////////////////////////////////////////////
 
 		case 6:
-			displayLCDCenteredString(0, "Prog Skills");
+			displayLCDCenteredString(0, "Fast Cube");
 			displayLCDCenteredString(1, "is running!");
 			wait1Msec(100);
 
+			if(getTaskState(FCDrive) == taskStateStopped)
+				startTask(FCDrive);
+			if(getTaskState(FCClaw) == taskStateStopped)
+				startTask(FCClaw);
+			if(getTaskState(FCLift) == taskStateStopped)
+				startTask(FCLift);
+
+
+			/**
+			backward(127, 1350);
+			leftTurn(127, 10);
+			clawFunction(400);
+			wait(100);
+			liftUp(2100);
+			wait(100);
+			clawFunction(1250);
+
+			**/
+
+
+
+
+
+			/**
 			if(getTaskState(PSDrive) == taskStateStopped)
-				startTask(PSDrive);
+			startTask(PSDrive);
 			if(getTaskState(PSClaw) == taskStateStopped)
-				startTask(PSClaw);
+			startTask(PSClaw);
 			if(getTaskState(PSLift) == taskStateStopped)
-				startTask(PSLift);
+			startTask(PSLift);
+			**/
 
 
 			//////////////////////////////////////////////////////////////////////////////////////

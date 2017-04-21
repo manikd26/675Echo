@@ -21,15 +21,6 @@ task manualLift()
 			motor[leftLift] = -127;
 		}
 
-		else if(vexRT(Btn8D))
-		{
-			motor[rightMidLift] = -60;
-			motor[leftMidLift] = -60;
-			motor[rightLift] = -60;
-			motor[leftLift] = -60;
-
-		}
-
 		else
 		{
 			motor[rightMidLift] = 0;
@@ -112,7 +103,7 @@ task claw()
 			motor[leftClaw] = -127;
 			wait1Msec(650);
 			**/
-			clawFunction(1000);
+			clawFunction(1150);
 			mrParsonSucks = false;
 		}
 		if (SensorValue[liftPot] < 2100) {

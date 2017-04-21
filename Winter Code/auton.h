@@ -258,8 +258,8 @@ void closeClaw(int targetPot)
 		motor[leftClaw] = -127;
 	}
 
-	motor[rightClaw] = 0;
-	motor[leftClaw] = 0;
+	motor[rightClaw] = 5;
+	motor[leftClaw] = 5;
 
 	wait1Msec(250);
 }
@@ -279,17 +279,18 @@ void clawFunction(int targetPot)
 		motor[leftClaw] = 127;
 	}
 
-	motor[rightClaw] = -10;
-	motor[leftClaw] = -10;
+	motor[rightClaw] = -20;
+	motor[leftClaw] = -20;
 
-	wait1Msec(500);
+	wait1Msec(1000);
+
 
 }
 
 void clawHold(int time)
 {
 	motor[rightClaw] = 60;
-	motor[leftClaw ] = 60;
+	motor[leftClaw] = 60;
 
 	wait1Msec(time);
 }
